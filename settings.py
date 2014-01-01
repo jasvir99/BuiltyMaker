@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'builtymaker',                      # Or path to database file if using sqlite3.
+        'NAME': 'builty',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
         'PASSWORD': 'a',
@@ -40,7 +40,7 @@ SITE_ID = 1
 DEFAULT_FROM_EMAIL = 'jassigrewal91@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'jassigrewal91@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'iwantsuccess'
 EMAIL_USE_TLS = True
 EMAIL_PORT = "587"
 ACCOUNT_ACTIVATION_DAYS = 2

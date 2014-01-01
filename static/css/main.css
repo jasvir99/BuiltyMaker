@@ -18,7 +18,7 @@ a {
 }
 
 a:hover { 
-	border-bottom:1px solid #ccc; 
+	
 	color: #808080; 
 	background: inherit; 
 }
@@ -214,7 +214,7 @@ form input.button {
 }
 
 #left h2 { 
-	float: left; 
+	
 	font: 2.1em "Trebuchet MS", Arial; 
 	
 	color:#121212; 

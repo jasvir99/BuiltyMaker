@@ -3,8 +3,10 @@
 <html>
 
 {% block content %}
+<div id="left">	
 <h1>Payment</h1>
 <p>Paid Successfully</p>
 <a href="/builty/main/addfreight/">Add Freight details </a>	
+</div>
 </html>
 {% endblock %}

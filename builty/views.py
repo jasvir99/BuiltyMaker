@@ -61,9 +61,14 @@ def new_consignment(request):
 				private_mark = private_mark, invoice_no = invoice_no, 
 				date = date, invoice_value = invoice_value, 
 				actual_weight_in_kg = actual_weight_in_kg, status = status,
-				charged_weight_in_kg = 	charged_weight_in_kg)
+				charged_weight_in_kg = 	charged_weight_in_kg, 
+				service_tax_paid_by = service_tax_paid_by)
 				save.save()
-				return render_to_response('builty/cons_ok.html')
+				id = consignment_details.objects.aggregate(Max('id'))
+				cons_id = id['id__max']
+				temp = {'cons_id':cons_id}
+				return render_to_response('builty/cons_ok.html', 
+				dict(temp.items()), context_instance=RequestContext(request))
 		else :
 			return render_to_response('builty/index1.html')
 	else:
@@ -77,6 +82,7 @@ def add_payment(request):
 		if request.method == 'POST':
 			form = paymentDetailsForm(request.POST)
 			if form.is_valid():
+				cons_id = request.GET.get('q', '')
 				cd = form.cleaned_data
 				freight_mode = cd['freight_mode']
 				billing_station = cd['billing_station']
@@ -87,7 +93,11 @@ def add_payment(request):
 			    amount_paid = amount_paid, cheque_or_dd_no = cheque_or_dd_no,
 				amount_to_pay = amount_to_pay, freight_mode = freight_mode)
 				save.save()
-				return render_to_response('builty/pay_ok.html')
+				id = payment_details.objects.aggregate(Max('id'))
+				pay_id = id['id__max']
+				temp = {'pay_id':pay_id,'cons_id':cons_id}
+				return render_to_response('builty/pay_ok.html', 
+				dict(temp.items()), context_instance=RequestContext(request))
 		else:
 			form = paymentDetailsForm()
 			temp = {'form': form}
@@ -118,12 +128,8 @@ def add_freight(request):
 				stationary_charges + other_charges
 				total_service_tax = (total * fixed_tax) / 100
 				grand_total = total + total_service_tax
-				id = consignment_details.objects.aggregate(Max('id'))
-				consignment = id['id__max']
-				cons = consignment_details.objects.get(id = consignment)
-				id = payment_details.objects.aggregate(Max('id'))
-				payment = id['id__max']
-				pay = payment_details.objects.get(id = payment)
+				cons = consignment_details.objects.get(id=request.GET.get('c', ''))
+				pay = payment_details.objects.get(id = request.GET.get('p', ''))
 				save = freight_details(cons = cons, pay = pay, basic_freight 
 				= basic_freight, barrier_charges = barrier_charges, 
 				hamali_charges = hamali_charges, stationary_charges = 
@@ -131,7 +137,9 @@ def add_freight(request):
 				service_tax = total_service_tax, total = total, grand_total 
 				= grand_total)
 				save.save()
-				temp = {'consignment':cons}
+				id = freight_details.objects.aggregate(Max('id'))
+				freight_id = id['id__max']
+				temp = {'consignment':freight_id}
 				return render_to_response('builty/freight_ok.html',
 				dict(temp.items()),context_instance=RequestContext(request))
 		else:
@@ -145,12 +153,17 @@ def add_freight(request):
 def generate_builty(request):
 	if request.user.is_active == 1:
 		query = request.GET.get('q', '')
-		cons_details = consignment_details.objects.get(id=query)
-		freightDetails = freight_details.objects.get(id=query)
+		cons= freight_details.objects.values('cons_id').get(id=query)
 		pay = freight_details.objects.values('pay_id').get(id=query)
-		freightMode = freight_details.objects.values('pay__freight_mode__mode').filter(id=query)
-		temp = {'cons_details': cons_details, 'freight': freightDetails,
-		'freightMode':freightMode}
+		details = freight_details.objects.values('cons__id','cons__consigner'
+		,'cons__consigner_tin','cons__consignee','cons__consignee_tin',
+		'cons__source','cons__destination','cons__date','cons__number_of_pkgs',
+		'cons__invoice_value','cons__item_description','cons__actual_weight_in_kg'
+		,'cons__charged_weight_in_kg','cons__service_tax_paid_by',
+		'cons__private_mark','basic_freight','hamali_charges','barrier_charges'
+		,'stationary_charges','other_charges','total','service_tax','grand_total'
+		,'pay__freight_mode__mode').get(id=query)
+		temp = {'details': details}
 		return render_to_response('builty/gen_builty.html', 
 		dict(temp.items()), context_instance=RequestContext(request))
 	else:
