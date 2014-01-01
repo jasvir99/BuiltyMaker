@@ -1,0 +1,35 @@
+{% extends "base_site1.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="container">
+		
+		<div class="form-bg">
+<form method="post" action=".">
+<h2>Login</h2>
+{% csrf_token %}
+  {{ form.as_p }}
+
+  
+  <input type="hidden" name="next" value="{{ next }}" />
+<label>
+				  
+				  <span><a href="/builty/accounts/password/reset/">Forgot Password?</a></span><br>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/builty/accounts/register">Register Now</a></span>
+				</label>
+				<button type="submit"></button>
+				
+			</form>
+		</div>
+
+	
+		
+
+
+	</div><!-- container -->
+
+
+</div>
+{% endblock %}
+

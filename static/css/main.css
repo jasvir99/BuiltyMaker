@@ -1,0 +1,348 @@
+
+   
+* { margin:0; padding:0; }
+body { 
+	font: 72.5%/1.7em "Lucida Grande", 
+		"Lucida Sans Unicode", verdana, 
+		geneva, sans-serif; 
+	color:#555; 
+	background: #fff url(../images/headerbg.gif) repeat-x; 
+}
+
+/* general styling */
+a { 
+	color:#007898; 
+	background: inherit; 
+	
+	text-decoration:none; 
+}
+
+a:hover { 
+	border-bottom:1px solid #ccc; 
+	color: #808080; 
+	background: inherit; 
+}
+
+a:focus { 
+	outline: 0; 
+}
+
+ul { 
+	margin:10px 10px 10px 0; 
+	padding:0 0 0 15px; 
+}
+
+li { 
+	margin:0 0 0 10px; 
+	padding:3px; 
+}
+
+img { 
+	border: 0; 
+	text-decoration: none; 
+}
+
+/* content */
+.wrap { 
+	padding:0 10px 10px 10px; 
+	width:860px; 
+	margin:0 auto; 
+}
+
+#logo {
+	float:left; 
+	margin:26px 20px 14px 5px;
+	color:#768998; 
+}
+#options {
+	float:right;
+	margin: 25 0 20px 0; 
+	color:#768998; 
+}
+h1 { 
+	margin: 0 0 10px; 
+	letter-spacing: 1px; 
+	font-size: 2em; 
+}
+
+h1 a { 
+	color: #fff; 
+	font: 1.5em "Trebuchet MS", Arial; 
+}
+
+h1 a:hover { 
+	color: #FFFCB3; 
+}
+	
+/* main navigation */
+#nav { 
+	float:right; 
+	border:none; 
+	padding:0; 
+	margin: 47px 136px 60px 0; 
+}
+
+#nav li { 
+	float:left; 
+	list-style:none; 
+	margin:0 4px 0 0; 
+	padding:0; 
+	font-size: 1.1em; 
+}
+
+#nav li a { 
+	display:block; 
+	padding: 10px 12px 15px; 
+	color:#768998; 
+	text-decoration:none; 
+	border: 0; 
+	margin:0 1px 0 0; 
+}
+
+
+/* Form */
+form {
+    width: 500px;
+    margin: 24px 0 24px 0;
+    padding: 32px 40px;
+    background: #E9EAEB;
+    border: 1px solid #DFE1E6;
+
+}
+input, select {
+    vertical-align: middle;
+}
+form div {
+	border-bottom: 1px solid #D8DAE0;
+	
+	color: #2C76A6;
+}
+form p {
+	color: #1980AF;
+}
+form label {
+    display: block;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, Sans-Serif;
+    font-weight: bold;
+    line-height: 24px;
+    font-size: 13px;
+    margin: 0 0 5px 0;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
+    color:#666666;
+	width: 140px;
+}
+form label span {
+    color: #1980AF;
+}
+form input,
+form select,
+form textarea {
+    margin-bottom: 24px;
+	padding: 9px 10px;
+    color: #999;
+    background: #fff;
+	border-width: 1px;
+	border-style: solid;
+  	border-color: #DCDEE2 #E9EBED #E9EBED #DCDEE2;
+	font: 13px 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, Sans-serif;
+}
+form textarea {
+    height: 325px;
+}
+form input:focus,
+form select:focus,
+form textarea:focus {
+	background: #EEF5F9;
+    color: #666666;
+}
+form input.button {
+   	height: 36px;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, Sans-serif;
+   	margin-top: 10px;
+	margin-right: 3px;
+	padding: 6px 10px;
+	border: 1px solid #2177A5;
+	background-color: #227bad;
+    color: #fff;
+    cursor: pointer;
+
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.3), inset 0 1px 0 #3CA5D2;
+    -moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3), inset 0 1px 0 #3CA5D2;
+    -webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.3), inset 0 1px 0 #3CA5D2;
+}
+.ie7 form input.button {
+    padding: 0 2px;
+}
+#name, #email, #message, #website {
+	width: 475px;
+}
+
+/* Clearing and Alignment */
+.align-left {
+    float: left;
+}
+.align-right {
+    float: right;
+}
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.ie7 .clearfix { zoom: 1; } /* IE7 */
+/* login */
+#login { 
+	float: left; 
+	width: 570px; 
+	margin: 100px 0 20px 0; 
+}
+
+/* main content */
+#left { 
+	float: left; 
+	width: 570px; 
+	margin: 0 0 20px 0; 
+}
+
+#left h2 { 
+	float: left; 
+	font: 2.1em "Trebuchet MS", Arial; 
+	
+	color:#121212; 
+	letter-spacing:-1px; 
+	margin: 0px 0 20px 0; 
+	clear:left; 
+	}
+
+#left h2 a { 
+	color:#121212; 
+	text-decoration:none; 
+	border: 0; 
+}
+
+#left p { 
+	clear: both; 
+	margin: 5px 0 20px 0; 
+	font-size:110%; 
+	line-height:21px; 
+}
+/* stripped table */
+#striped{
+	float: left; 
+	width: 1600px; 
+	margin: 0 0 20px 0; 
+}
+#striped table.striped {
+	border-collapse: collapse;
+	border-spacing: 0px;
+	border-bottom: 1px solid #006699;
+}
+
+#striped table.striped td, table.striped th {
+	padding: 3px 10px;
+}
+
+
+
+#striped table.stripped tbody th {
+	border-right: 1px solid #006699;
+	text-align: center;
+}
+
+#striped table.striped td {
+	background-color: #FFFFCC;
+}
+#striped table.striped tr.even td {
+	background-color: #E1FFE1;
+}
+
+#striped h3 {
+	font-size: 1em;
+
+}
+
+#search {
+	margin-top:100px;
+	float: left; 
+	width: 100px;
+}
+
+#dispatch {
+	margin-top:-30px;
+	float: left; 
+	width: 300px;
+}
+/* sidebar */
+#right {
+		
+	width:230px; 
+	float:right; 
+	margin: 25 0 20px 0; 
+	background: #E6E6E6;
+}
+
+#right h2 { 
+	color:#fff; 
+	margin: 0 0 5px 0; 
+	font: bold 1.2em "Trebuchet MS", Arial; 
+	background: #fff url(../images/sideh2bg.gif) repeat-x; 
+	padding: 4px 10px; border-bottom: 2px solid #000; 
+}
+
+#right ul { 
+	list-style:none; 	
+	border-top:1px solid #eee; 
+	border:none; 
+	padding:0; 
+	margin:0 0 15px 0; 
+}
+
+#right ul li { 
+	border-bottom:1px solid #eee; 
+	padding:5px; 
+	margin:0; 
+}
+
+#right ul li a { 
+	border: 0; 
+}
+
+#tagcloud { 
+	margin: 0 0 20px; 
+}
+
+#tagcloud a { 
+	margin: 0 5px 0 0; 
+	color: #25771F; 
+}
+
+#tagcloud a:hover { 
+	background: #E7FEE5; 
+	color: #007898; 
+}
+	
+#info { 
+	border: 1px solid #ccc; 
+	padding: 3px 5px; 
+	margin: 0 0 10px; 
+}
+
+#footer { 
+	clear: both; 
+	border-top: 1px solid #ccc; 
+	padding: 20px 0; 
+	color:#808080; 
+}
+
+#footer p { 
+	line-height: 2.5em; 
+} 

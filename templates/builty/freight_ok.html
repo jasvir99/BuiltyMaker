@@ -1,0 +1,13 @@
+{% extends "base_site.html" %}
+{% load i18n %}
+<html>
+
+{% block content %}
+<div id="left">	
+<h1>Add Freight Details</h1>
+<p>Freight Details Added Successfully</p>
+
+<a href="/builty/main/genbuilty/?q={{ consignment.id }}">Consignment Note </a>
+</div>
+</html>
+{% endblock %}

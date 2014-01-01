@@ -1,0 +1,89 @@
+{% extends "base_site_consNote.html" %}
+{% load i18n %}
+{% block title %}{{ title }} {% trans 'Consignment Register' %}{% endblock %}
+<html>
+{% block content %}
+<div id="content-wrap">
+
+    <!-- content -->
+    <div id="content" class="clearfix">
+
+   	    <!-- main -->
+        <div id="main">
+
+      	    
+
+      		    <div class="primary">
+<h1 align="center">Consignment Regsiter</h1>
+<br><br>
+<table border="1" width ="100%" class="striped">
+
+	<tr>
+		<th>A/C</th>
+		<th>Date</th>
+		<th>G.R No.</th>
+		<th>Consigner</th>
+		<th>Consignee</th>
+		<th>No. Of Pkgs</th>
+		<th>Weight</th>
+		<th>Description</th>
+		<th>Destination</th>
+		<th>Freight</th>
+		<th width = 150>Status</th>
+	</tr>
+
+<tbody>
+	{% for values in consignment %}	
+		{% if forloop.counter|divisibleby:"2" %}
+			<tr class="even">
+				<td align="center">{{values.cons__account_of__account}}</td>
+				<td align="center">{{values.cons__date}}</td>
+				<td align="center">{{values.cons__id}}</td>
+				<td align="center"><b>Name </b>:&nbsp;{{values.cons__consigner}}<br>
+				<b>TIN </b>:&nbsp{{values.cons__consigner_tin}}</td>
+				<td align="center"><b>Name </b>:&nbsp;{{values.cons__consignee}}<br>
+				<b>TIN </b>:&nbsp{{values.cons__consignee_tin}}</td>
+				<td align="center">{{values.cons__number_of_pkgs}}</td>
+				<td align="center"><b>Actual </b>:&nbsp;{{values.cons__actual_weight_in_kg}}<br>
+				<b>Charged </b>:&nbsp;{{values.cons__charged_weight_in_kg}}</td>
+				<td align="center">{{values.cons__item_description}}</td>
+				<td align="center">{{values.cons__destination}}</td>
+				<td align="center"><b>Paid </b>:&nbsp;{{values.pay__amount_paid}}<br>
+				<b>To Pay </b>:&nbsp;{{values.pay__amount_to_pay}}</td>				
+				{% if values.cons__status__status == 0 %}
+					<td align="center"><a href="/builty/main/dispatch/?q={{ values.cons__id }}"><b>Waiting</b></a></td>
+				{% else %}
+					<td align="center">Dispatched on {{ values.cons__status__date }}</td>
+				{% endif %}
+			</tr>
+		{% else %}
+			<tr>
+				<td align="center">{{values.cons__account_of__account}}</td>
+				<td align="center">{{values.cons__date}}</td>
+				<td align="center">{{values.cons__id}}</td>
+				<td align="center"><b>Name </b>:&nbsp;{{values.cons__consigner}}<br>
+				<b>TIN </b>:&nbsp{{values.cons__consigner_tin}}</td>
+				<td align="center"><b>Name </b>:&nbsp;{{values.cons__consignee}}<br>
+				<b>TIN </b>:&nbsp{{values.cons__consignee_tin}}</td>
+				<td align="center">{{values.cons__number_of_pkgs}}</td>
+				<td align="center"><b>Actual </b>:&nbsp;{{values.cons__actual_weight_in_kg}}<br>
+				<b>Charged </b>:&nbsp;{{values.cons__charged_weight_in_kg}}</td>
+				<td align="center">{{values.cons__item_description}}</td>
+				<td align="center">{{values.cons__destination}}</td>
+				<td align="center"><b>Paid </b>:&nbsp;{{values.pay__amount_paid}}<br>
+				<b>To Pay </b>:&nbsp;{{values.pay__amount_to_pay}}</td>
+				{% if values.cons__status__status == 0 %}
+					<td align="center"><a href="/builty/main/dispatch/?q={{ values.cons__id }}"><b>Waiting</b></a></td>
+				{% else %}
+					<td align="center">Dispatched on {{ values.cons__status__date }}</td>
+				{% endif %}
+			</tr>
+		{% endif %}
+	{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+{% endblock %}
+</html>

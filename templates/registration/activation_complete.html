@@ -1,0 +1,22 @@
+{% extends "base_site1.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="login">
+{% if account %}
+
+<h2>{% trans "Account successfully activated" %}</h2><br>
+
+<a href="/builty/accounts/login"><button></button></a>
+
+{% else %}
+
+<h2>{% trans "Account successfully activated" %}</h2><br>
+
+
+<a href="/builty/accounts/login"><button></button></a>
+
+
+{% endif %}
+</div>
+{% endblock %}
