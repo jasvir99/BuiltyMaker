@@ -4,7 +4,7 @@
 {% block content %}
 
 <div id="right">
-       <h2>New Consignment</h2>
+       <h2 text-align="center">New Consignment</h2>
 
                 <p>
 		        <marquee behavior="scroll" direction="up"></b>New Consignment Added by Jass</b></marquee>

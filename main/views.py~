@@ -47,33 +47,34 @@ def new_consignment(request):
 				charged_weight_in_kg = cd['charged_weight_in_kg']
 				mode = cd['mode_of_transfer']
 				account = cd['account_of']
-				service_tax_paid_by = cd['service_tax_paid_by'] 
+				service_tax_paid_by = cd['service_tax_paid_by']
+				id = dispatch_status.objects.aggregate(Max('id'))
+				status_id = id['id__max'] + 1
 				dispatch = dispatch_status()
 				dispatch.save()
-				id = dispatch_status.objects.aggregate(Max('id'))
-				status_id = id['id__max']
 				status = dispatch_status.objects.get(id = status_id)
-				save = consignment_details(account_of = account, mode_of_transfer = mode, 
-				consigner = consigner ,consigner_tin = consigner_tin, 
-				consignee =  consignee, consignee_tin = consignee_tin, 
-				source = source, destination = destination, number_of_pkgs 
-				= number_of_pkgs, item_description = item_description, 
-				private_mark = private_mark, invoice_no = invoice_no, 
-				date = date, invoice_value = invoice_value, 
+				save = consignment_details(account_of = account, mode_of_transfer = mode,
+				consigner = consigner ,consigner_tin = consigner_tin,
+				consignee =  consignee, consignee_tin = consignee_tin,
+				source = source, destination = destination, number_of_pkgs
+				= number_of_pkgs, item_description = item_description,
+				private_mark = private_mark, invoice_no = invoice_no,
+				date = date, invoice_value = invoice_value,
 				actual_weight_in_kg = actual_weight_in_kg, status = status,
-				charged_weight_in_kg = 	charged_weight_in_kg)
+				charged_weight_in_kg = 	charged_weight_in_kg,
+				service_tax_paid_by = service_tax_paid_by)
 				save.save()
 				id = consignment_details.objects.aggregate(Max('id'))
 				cons_id = id['id__max']
 				temp = {'cons_id':cons_id}
-				return render_to_response('builty/cons_ok.html', 
+				return render_to_response('builty/cons_ok.html',
 				dict(temp.items()), context_instance=RequestContext(request))
 		else :
 			return render_to_response('builty/index1.html')
 	else:
 		form = consignmentForm()
 		temp = {'form':form}
-		return render_to_response('builty/new_consignment.html', 
+		return render_to_response('builty/new_consignment.html',
 		dict(temp.items()), context_instance=RequestContext(request))
 
 def add_payment(request):
@@ -88,19 +89,19 @@ def add_payment(request):
 				amount_to_pay = cd['amount_to_pay']
 				amount_paid = cd['amount_paid']
 				cheque_or_dd_no = cd['cheque_or_dd_no']
-				save = payment_details( billing_station = billing_station, 
+				save = payment_details( billing_station = billing_station,
 			    amount_paid = amount_paid, cheque_or_dd_no = cheque_or_dd_no,
 				amount_to_pay = amount_to_pay, freight_mode = freight_mode)
 				save.save()
 				id = payment_details.objects.aggregate(Max('id'))
 				pay_id = id['id__max']
 				temp = {'pay_id':pay_id,'cons_id':cons_id}
-				return render_to_response('builty/pay_ok.html', 
+				return render_to_response('builty/pay_ok.html',
 				dict(temp.items()), context_instance=RequestContext(request))
 		else:
 			form = paymentDetailsForm()
 			temp = {'form': form}
-			return render_to_response('builty/add_payment.html', 
+			return render_to_response('builty/add_payment.html',
 			dict(temp.items()), context_instance=RequestContext(request))
 	else:
 		return render_to_response('builty/index1.html')
@@ -129,11 +130,11 @@ def add_freight(request):
 				grand_total = total + total_service_tax
 				cons = consignment_details.objects.get(id=request.GET.get('c', ''))
 				pay = payment_details.objects.get(id = request.GET.get('p', ''))
-				save = freight_details(cons = cons, pay = pay, basic_freight 
-				= basic_freight, barrier_charges = barrier_charges, 
-				hamali_charges = hamali_charges, stationary_charges = 
-				stationary_charges, other_charges = other_charges, 
-				service_tax = total_service_tax, total = total, grand_total 
+				save = freight_details(cons = cons, pay = pay, basic_freight
+				= basic_freight, barrier_charges = barrier_charges,
+				hamali_charges = hamali_charges, stationary_charges =
+				stationary_charges, other_charges = other_charges,
+				service_tax = total_service_tax, total = total, grand_total
 				= grand_total)
 				save.save()
 				id = freight_details.objects.aggregate(Max('id'))
@@ -144,7 +145,7 @@ def add_freight(request):
 		else:
 			form = freightDetailsForm()
 			temp = {'form':form}
-			return render_to_response('builty/add_freight.html', 
+			return render_to_response('builty/add_freight.html',
 			dict(temp.items()),context_instance=RequestContext(request))
 	else:
 		return render_to_response('builty/index1.html')
@@ -163,7 +164,7 @@ def generate_builty(request):
 		,'stationary_charges','other_charges','total','service_tax','grand_total'
 		,'pay__freight_mode__mode').get(id=query)
 		temp = {'details': details}
-		return render_to_response('builty/gen_builty.html', 
+		return render_to_response('builty/gen_builty.html',
 		dict(temp.items()), context_instance=RequestContext(request))
 	else:
 		return render_to_response('builty/index1.html')
@@ -180,23 +181,23 @@ def consignment_register(request):
 		'cons__charged_weight_in_kg','cons__item_description',
 		'pay__amount_to_pay','pay__amount_paid').all()
 		temp = {'consignment': details}
-		return render_to_response('builty/cons_register.html', 
+		return render_to_response('builty/cons_register.html',
 		dict(temp.items()),context_instance=RequestContext(request))
 	else:
 		return render_to_response('builty.index1.html')
 
 def prev_cons(request):
-	if request.user.is_active == 1:		
+	if request.user.is_active == 1:
 		query = request.GET.get('q', '')
 		if query :
 			result = consignment_details.objects.filter(id=query)
 			temp = {'result': result, 'query': query}
-			return render_to_response('builty/prev_cons.html', 
+			return render_to_response('builty/prev_cons.html',
 			dict(temp.items()), context_instance=RequestContext(request))
 		else:
 			result = []
 			temp = {'result':result}
-			return render_to_response('builty/prev_cons.html', 
+			return render_to_response('builty/prev_cons.html',
 			dict(temp.items()), context_instance=RequestContext(request))
 	else:
 		return render_to_response('builty/index1.html')
@@ -206,7 +207,7 @@ def dispatch(request):
 		query = request.GET.get('q','')
 		consignment = consignment_details.objects.filter(id = query)
 		temp = {'consignment': consignment}
-		return render_to_response('builty/dispatch_confirm.html', 
+		return render_to_response('builty/dispatch_confirm.html',
 		dict(temp.items()),context_instance=RequestContext(request))
 	else:
 		return render_to_response('builty/index1.html')

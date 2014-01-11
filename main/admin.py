@@ -3,7 +3,7 @@
 '''
 
 from django.contrib import admin
-from BuiltyMaker.builty.models import *
+from BuiltyMaker.main.models import *
 
 #::::::::::::Defining admin classes:::::::::::::#
 

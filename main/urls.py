@@ -1,10 +1,10 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 admin.autodiscover()
-from BuiltyMaker.builty.models import *
-urlpatterns = patterns('BuiltyMaker.builty.views',
+from BuiltyMaker.main.models import *
+urlpatterns = patterns('BuiltyMaker.main.views',
 	#	(r'^$', 'index'),
-        (r'^newconsignmet','new_consignment'),
+        (r'^newconsignment','new_consignment'),
         (r'^addpayment', 'add_payment'),
         (r'^addfreight', 'add_freight'),
         (r'^genbuilty', 'generate_builty'),

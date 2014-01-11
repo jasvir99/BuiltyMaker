@@ -59,6 +59,11 @@ img {
 	margin: 25 0 20px 0; 
 	color:#768998; 
 }
+	
+#options a:hover{
+ color:white;
+}
+
 h1 { 
 	margin: 0 0 10px; 
 	letter-spacing: 1px; 
@@ -76,10 +81,14 @@ h1 a:hover {
 	
 /* main navigation */
 #nav { 
+	width:100%;
 	float:right; 
 	border:none; 
 	padding:0; 
-	margin: 47px 136px 60px 0; 
+	margin: 47px -102px 0 0; 
+	-moz-border-radius:10px;  /* for Firefox */
+	-webkit-border-radius:10px; /* for Webkit-Browsers */	
+	border-radius:10px; /* regular */
 }
 
 #nav li { 
@@ -96,7 +105,21 @@ h1 a:hover {
 	color:#768998; 
 	text-decoration:none; 
 	border: 0; 
-	margin:0 1px 0 0; 
+	margin:0 1px 0 0;
+	 
+}
+
+#nav li a:hover {
+	background: #E6E6E6;
+	display:block; 
+	padding: 10px 12px 15px; 
+	color:#768998; 
+	text-decoration:none; 
+	border: 0; 
+	margin:0 1px 0 0;
+	-moz-border-radius:10px;  /* for Firefox */
+	-webkit-border-radius:10px; /* for Webkit-Browsers */	
+	border-radius:10px; /* regular */ 
 }
 
 
@@ -286,11 +309,12 @@ form input.button {
 		
 	width:230px; 
 	float:right; 
-	margin: 25 0 20px 0; 
+	margin: 50px -123px 20px 0; 
 	background: #E6E6E6;
 }
 
 #right h2 { 
+	text-align:center;
 	color:#fff; 
 	margin: 0 0 5px 0; 
 	font: bold 1.2em "Trebuchet MS", Arial; 
@@ -298,6 +322,9 @@ form input.button {
 	padding: 4px 10px; border-bottom: 2px solid #000; 
 }
 
+#right p {
+	text-align:center;
+}
 #right ul { 
 	list-style:none; 	
 	border-top:1px solid #eee; 
